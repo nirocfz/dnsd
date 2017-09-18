@@ -92,7 +92,8 @@ function final_response(res, value) {
     if(soa_record)
       zone_minimum = soa_record.data.ttl
 
-    record.ttl = Math.max(record.ttl || 0, zone_minimum)
+    if (record.ttl <= 0)
+      record.ttl = zone_minimum
   }
 }
 
