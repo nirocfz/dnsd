@@ -65,6 +65,7 @@ State.prototype.message = function(msg) {
   byte |= msg.recursion_available ? 0x80 : 0x00
   byte |= msg.authenticated       ? 0x20 : 0x00
   byte |= msg.checking_disabled   ? 0x10 : 0x00
+  byte |= msg.nxdomain            ? 0x03 : 0x00
   byte |= (msg.responseCode & 0x0f)
 
   self.header.writeUInt8(byte, 3)

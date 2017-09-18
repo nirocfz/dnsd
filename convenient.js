@@ -57,8 +57,11 @@ function final_response(res, value) {
 
   res.authoritative = !! soa_record
 
+  if (!value) {
+      res.nxdomain = true
+  }
   // Add convenience for typical name resolution.
-  if(questions.length == 1 && question.kind() == 'IN A') {
+  else if(questions.length == 1 && question.kind() == 'IN A') {
     // If the value given is an IP address, make that the answer.
     if(typeof value == 'string' && answers.length == 0)
       res.answer.push({'class':'IN', 'type':'A', 'name':question.name, 'data':value})
