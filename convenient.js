@@ -43,7 +43,7 @@ function final_response(res, value) {
 
   // Find the zone of authority for this record, if any.
   var question = questions[0]
-    , names = question && question.name && question.name.split(/\./)
+    , names = question && question.name && question.name.split(/\./).map(function (name) { return name.toLowerCase() })
     , zone, soa_record
 
   while(names && names.length) {
