@@ -63,6 +63,7 @@ Server.prototype.zone = function(zone, server, admin, serial, refresh, retry, ex
 
   if(typeof record != 'object')
     record = { 'class': 'IN'
+             , 'ttl'  : convenient.seconds(ttl || 0)
              , 'type' : 'SOA'
              , 'name' : zone.toLowerCase()
              , 'data' : { 'mname': server
