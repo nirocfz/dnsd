@@ -50,7 +50,6 @@ function DNSMessage (body) {
   this.recursion_available = null
   this.authenticated       = null
   this.checking_disabled   = null
-  this.nxdomain            = null
 
   if(Buffer.isBuffer(body))
     this.parse(body)
