@@ -72,8 +72,12 @@ function final_response(res, value) {
   }
 
   // If the server is authoritative for a zone, add an SOA record if there is no good answer.
-  if(soa_record && questions.length == 1 && answers.length == 0 && authorities.length == 0)
-    res.authority.push(soa_record)
+  if(questions.length == 1 && answers.length == 0 && authorities.length == 0) {
+    if (soa_record)
+      res.authority.push(soa_record)
+    else
+      res.rejected = true
+  }
 
   // Set missing TTLs
   answers.forEach(well_formed_record)

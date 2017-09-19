@@ -50,6 +50,8 @@ function DNSMessage (body) {
   this.recursion_available = null
   this.authenticated       = null
   this.checking_disabled   = null
+  this.nxdomain            = null
+  this.rejected            = null
 
   if(Buffer.isBuffer(body))
     this.parse(body)
@@ -73,6 +75,10 @@ function DNSMessage (body) {
         delete self[section]
     }
   })
+}
+
+DNSMessage.prototype.setNotFound = function() {
+    this.nxdomain = true
 }
 
 DNSMessage.prototype.parse = function(body) {
